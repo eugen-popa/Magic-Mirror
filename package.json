@@ -1,0 +1,19 @@
+{
+  "name": "Magic-Mirror",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "./node_modules/.bin/electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eugen-popa/Magic-Mirror/issues"
+  },
+  "homepage": "https://github.com/eugen-popa/Magic-Mirror#readme",
+  "description": "",
+  "devDependencies": {
+    "electron": "^1.8.2"
+  }
+}
