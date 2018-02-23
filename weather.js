@@ -1,3 +1,4 @@
+
 var APPID = "61f94a9fa8130d49c23ed0f74d7e97af";
 var celsius, fahrenheit, loc, icon, humidity, windK, windM, direction, city, sunset, sunrise;
 
