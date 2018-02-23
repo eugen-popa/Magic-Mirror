@@ -15,8 +15,8 @@ function sendRequest(url){
                 weather.windM = data.wind.speed;  //this is for miles
                 weather.loc = data.name;
                 weather.celsius = KtoC(data.main.temp);
-                weather.tempF = KtoF(data.main.temp);
-                weather.sunset  = min(data.sys.sunset);
+                weather.fahrenheit = KtoF(data.main.temp);
+                weather.sunset = min(data.sys.sunset);
                 weather.sunrise = min(data.sys.sunrise);
                 weather.direction = degreesToDirection(data.wind.deg);
             
