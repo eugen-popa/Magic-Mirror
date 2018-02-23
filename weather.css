@@ -1,0 +1,56 @@
+.weather-app {
+    
+    float: right;
+    color: #fff;
+    font-family: 'Nunito Semibold';
+/*    text-align: center;*/
+}
+#weather{
+    display: grid;
+    grid-template-columns: (3, minmax(120px, auto));
+    grid-template-rows: (5,minmax(120px, auto));
+    max-width: 390px;
+    margin: 0 auto;
+}
+#weather div{
+    padding: 20px;
+}
+
+
+#temperaC {
+    grid-column: 1/3;
+    grid-row: 1/2;
+}
+.icon {
+    grid-column: 3/4;
+    grid-row: 1/3;
+}
+
+#temperaF {
+    grid-column: 1/3;
+    grid-row: 2/3;
+}
+
+.humidity {
+    grid-column: 1/2;
+    grid-row: 3/4;
+}
+
+.sunrise {
+    grid-column: 2/3;
+    grid-row: 3/4;
+}
+
+.sunset {
+    grid-column: 3/4;
+    grid-row: 3/4;
+}
+
+#location {
+    grid-column: 1/2;
+    grid-row: 4/5;
+}
+.wind {
+    grid-column: 2/3;
+    grid-row: 4/5;
+}

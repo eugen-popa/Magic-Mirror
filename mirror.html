@@ -3,13 +3,44 @@
     <head>
       <meta charset="UTF-8">
       <title>Hello World!</title>
+        
+        <script src="weather.js"></script>
         <script src="mirror.js"></script>
-        <style href="mirror.css"></style>
+        <link rel='stylesheet' type="text/css" href="mirror.css" />
+        <link rel='stylesheet' type="text/css" href="weather.css" />
+        <script>window.$ = window.jQuery = require('jquery');</script>
     </head>
     <body>
-      <h1>Hello World!</h1>
-      We are using node <script>document.write(process.versions.node)</script>,
-      Chrome <script>document.write(process.versions.chrome)</script>,
-      and Electron <script>document.write(process.versions.electron)</script>.
+<!--**************************WEATHER********************************-->
+    <div class="weather-app">
+        <div id="weather"> 
+        <div id="temperaC"><span id="temperatureC">0</span>C&deg;</div>
+        <div id="temperaF"><span id="temperatureF">0</span>F&deg;</div>
+        <div id="location"><span>Unknow</span></div>
+        
+        <div class="icon">
+            <img id="icon" width="75px" src="img/icons/03d.png"/>
+        </div>
+        
+        <div class="humidity">
+            <img src="/img/icons/humidity.png" height="16px" />
+            <samp id="humidity">0</samp>%
+        </div>
+            
+        <div id="sunrise">Sunrise</div>
+        <div id="sunset">Sunset</div>
+        <div class="windK">
+            <span id="windK">0</span> Km <span id="direction">N</span>
+        </div>
+        <div class="windM">
+            <span id="windM">0</span> Ml <span id="direction">N</span>
+        </div>
+        <div class="form">
+            <input type="text" id="city" size="10" value=""/>
+            <button onclick="citys()">ClicK</button>
+        </div>
+        </div>
+    </div>
+<!--***************************************************************-->
     </body>
   </html>
