@@ -1,78 +1,67 @@
 var APPID = "61f94a9fa8130d49c23ed0f74d7e97af";
-var tempC,tempF, loc, icon, humidity, windK,windM, direction, city, sunset, sunrise;
+var celsius, fahrenheit, loc, icon, day;
 
 function sendRequest(url){
     var xmlhttp = new XMLHttpRequest();
+    
     xmlhttp.onreadystatechange = function() {
         if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+            
             var data = JSON.parse(xmlhttp.responseText);
             console.log(data);
-            var weather = {};
-            weather.icon = data.weather[0].icon;
-            weather.humidity = data.main.humidity;
-            weather.windK = KM(data.wind.speed); // this is for km
-            weather.windM = data.wind.speed;  //this is for miles
-            weather.loc = data.name;
-            weather.tempC = K2C(data.main.temp);
-            weather.tempF = K2F(data.main.temp);
-            weather.sunset  = min(data.sys.sunset);
-            weather.sunrise = min(data.sys.sunrise);
-            weather.direction = degreesToDirection(data.wind.deg);
-            update(weather);
+            
+        for(var i = 0; i < data.list; i++){
+        
         }
+        var weather = {};
+            weather.icon = data.list[0].weather[0].icon;          
+            weather.celsius = KtoC(data.list[0].main.temp);
+//          weather.fahrenheit = KtoF(data.list[0].main.temp);
+            weather.day = weekDay(data.list[0].dt_txt);
+    
+        update(weather);
+            }
     };
     xmlhttp.open('GET', url, true);
     xmlhttp.send();
 }
 
-//function updateByCityName(name) {
-//     var url = "http://api.openweathermap.org/data/2.5/weather?"+
-//        "q="+name+
-//        "&APPID="+APPID;
-//    sendRequest(url);
-//}
+function updateByCityName(name) {
+     var url = "http://api.openweathermap.org/data/2.5/forecast?"+
+        "q="+name+
+        "&APPID="+APPID;
+    sendRequest(url);
+}
 
-//function updateByCityName(name) {
-//     var url = "http://api.openweathermap.org/data/2.5/forecast?"+
-//        "q="+name+
-//        "&APPID="+APPID;
-//    sendRequest(url);
-//}
-
-
-function K2C(k) {
+function KtoC(k) {
     return Math.round(k - 273.15);
 }
 
-function K2F(k) {
-    return Math.round(k*(9/5)-459.67);
+//function KtoF(k) {
+//    return Math.round(k*(9/5)-459.67);
+//}
+
+function weekDay(date){
+  var dayOfWeek = new Date(date).getDay();    
+  return isNaN(dayOfWeek) ? null : 
+  ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][dayOfWeek];
 }
 
 function update(weather){
-    
-    tempC.innerHTML = weather.tempC;
-    tempF.innerHTML = weather.tempF;
+    celsius.innerHTML = weather.celsius;
+//    fahrenheit.innerHTML = weather.fahrenheit;
     loc.innerHTML = weather.loc;
+    day.innerHTML = weather.day;
     icon.src = "img/icons/" + weather.icon + '.png';
-    humidity.innerHTML = weather.humidity;
-    windK.innerHTML = weather.windK;
-    windM.innerHTML = weather.windM;
-    direction.innerHTML = weather.direction;
-    sunset.innerHTML = weather.sunset;
-    sunrise.innerHTML = weather.sunrise;
 }
 
 function citys(){
-    tempC = document.getElementById('temperatureC');
-    tempF = document.getElementById('temperatureF');
-    loc = document.getElementById('location');
     icon = document.getElementById('icon');
-    humidity = document.getElementById('humidity');
-    windK = document.getElementById('windK');
-    windM = document.getElementById('windM')
-    direction = document.getElementById('direction');
-    sunrise = document.getElementById('sunrise');
-    sunset = document.getElementById('sunset');
+    day =document.getElementById('day1');
+    celsius = document.getElementById('celsius');
+//    fahrenheit = document.getElementById('fahrenheit');
+//    loc = document.getElementById('location');
+    
     city = document.getElementById('city').value || 'fremont';
     
     updateByCityName(city);

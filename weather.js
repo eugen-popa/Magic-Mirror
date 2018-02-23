@@ -1,5 +1,5 @@
 var APPID = "61f94a9fa8130d49c23ed0f74d7e97af";
-var tempC,tempF, loc, icon, humidity, windK,windM, direction, city, sunset, sunrise;
+var celsius, fahrenheit, loc, icon, humidity, windK, windM, direction, city, sunset, sunrise;
 
 function sendRequest(url){
     var xmlhttp = new XMLHttpRequest();
@@ -7,17 +7,19 @@ function sendRequest(url){
         if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
             var data = JSON.parse(xmlhttp.responseText);
             console.log(data);
+            
             var weather = {};
-            weather.icon = data.weather[0].icon;
-            weather.humidity = data.main.humidity;
-            weather.windK = KM(data.wind.speed); // this is for km
-            weather.windM = data.wind.speed;  //this is for miles
-            weather.loc = data.name;
-            weather.tempC = K2C(data.main.temp);
-            weather.tempF = K2F(data.main.temp);
-            weather.sunset  = min(data.sys.sunset);
-            weather.sunrise = min(data.sys.sunrise);
-            weather.direction = degreesToDirection(data.wind.deg);
+                weather.icon = data.weather[0].icon;
+                weather.humidity = data.main.humidity;
+                weather.windK = KM(data.wind.speed); // this is for km
+                weather.windM = data.wind.speed;  //this is for miles
+                weather.loc = data.name;
+                weather.celsius = KtoC(data.main.temp);
+                weather.tempF = KtoF(data.main.temp);
+                weather.sunset  = min(data.sys.sunset);
+                weather.sunrise = min(data.sys.sunrise);
+                weather.direction = degreesToDirection(data.wind.deg);
+            
             update(weather);
         }
     };
@@ -62,26 +64,26 @@ function degreesToDirection(degres){
     return "N"
 }
 
-function K2C(k) {
+function KtoC(k) {
     return Math.round(k - 273.15);
 }
 
-function K2F(k) {
+function KtoF(k) {
     return Math.round(k*(9/5)-459.67);
 }
 
 function KM(km){
     
-    var trn = km / 5;
-    var min = km - trn;
-    var k = (min * 2);
-    return k.toFixed(1)
+    var rez = km / 5;
+    var min = km - rez;
+    var total = (min * 2);
+    return total.toFixed(1)
 }
 
 function update(weather){
     
-    tempC.innerHTML = weather.tempC;
-    tempF.innerHTML = weather.tempF;
+    celsius.innerHTML = weather.celsius;
+    fahrenheit.innerHTML = weather.fahrenheit;
     loc.innerHTML = weather.loc;
     icon.src = "img/icons/" + weather.icon + '.png';
     humidity.innerHTML = weather.humidity;
@@ -93,8 +95,8 @@ function update(weather){
 }
 
 function citys(){
-    tempC = document.getElementById('temperatureC');
-    tempF = document.getElementById('temperatureF');
+    celsius = document.getElementById('celsius');
+    fahrenheit = document.getElementById('fahrenheit');
     loc = document.getElementById('location');
     icon = document.getElementById('icon');
     humidity = document.getElementById('humidity');
