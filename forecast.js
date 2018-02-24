@@ -12,28 +12,51 @@ function sendRequest(url){
             var data = JSON.parse(xmlhttp.responseText);
             console.log(data);
             
-//        for(var i = 0; i <= data.list; i++){
-//            if (data.list[i].td)
-//        }
-        
-        var weather = {}
-            weather.forcastIcon1 = data.list[0].weather[0].icon;
-            weather.forcastIcon2 = data.list[0].weather[0].icon;
-            weather.forcastIcon3 = data.list[0].weather[0].icon;
-            weather.forcastIcon4 = data.list[0].weather[0].icon;
-            weather.forcastIcon5 = data.list[0].weather[0].icon;
+            var aray_icon = [];
+            var aray_temp = [];
+            var aray_day = [];
             
-            weather.celsius1 = KtoC(data.list[0].main.temp);
-            weather.celsius2 = KtoC(data.list[0].main.temp);
-            weather.celsius3 = KtoC(data.list[0].main.temp);
-            weather.celsius4 = KtoC(data.list[0].main.temp);
-            weather.celsius5 = KtoC(data.list[0].main.temp);
+        for(var i = 0; i < data.list.length; i++){
+            var forCast = data.list[i];
+              
+            var info = {};
+          
+            if (forCast.dt_txt.search("18:00:00") != -1){
+                
+                var icon, day, temp;
+                
+                info.icon = forCast.weather[0].icon;
+                info.day = forCast.dt;
+                info.temp = forCast.main.temp;
+                
+                aray_icon.push(info.icon);
+                aray_day.push(info.day);
+                aray_temp.push(info.temp);
+            }
+        }
+            var weather = {}
+                weather.forcastIcon1 = aray_icon[0];
+                weather.forcastIcon2 = aray_icon[1];
+                weather.forcastIcon3 = aray_icon[2];
+                weather.forcastIcon4 = aray_icon[3];
+                weather.forcastIcon5 = aray_icon[4];
             
-            weather.day1 = weekDay(data.list[0].dt_txt);
-            weather.day2 = weekDay(data.list[0].dt_txt);
-            weather.day3 = weekDay(data.list[0].dt_txt);
-            weather.day4 = weekDay(data.list[0].dt_txt);
-            weather.day5 = weekDay(data.list[0].dt_txt);
+                weather.celsius1 = KtoC(aray_temp[0]);
+                weather.celsius2 = KtoC(aray_temp[1]);
+                weather.celsius3 = KtoC(aray_temp[2]);
+                weather.celsius4 = KtoC(aray_temp[3]);
+                weather.celsius5 = KtoC(aray_temp[4]);
+            
+                weather.day1 = weekDay(aray_day[0]);
+                weather.day2 = weekDay(aray_day[1]);
+                weather.day3 = weekDay(aray_day[2]);
+                weather.day4 = weekDay(aray_day[3]);
+                weather.day5 = weekDay(aray_day[4]);
+            
+            console.log(weather.day1);
+            console.log(aray_day[1]);
+            console.log(weather.day4);
+            console.log(aray_day[4]);
             
         update(weather);
         }
@@ -103,11 +126,11 @@ function forcast(){
     celsius4 = document.getElementById('forCelDay4');
     celsius5 = document.getElementById('forCelDay5');
     
-    day1 =document.getElementById('weekDay1');
-    day2 =document.getElementById('weekDay2');
-    day3 =document.getElementById('weekDda3');
-    day4 =document.getElementById('weekDay4');
-    day5 =document.getElementById('weekDay5');
+    day1 = document.getElementById('weekDay1');
+    day2 = document.getElementById('weekDay2');
+    day3 = document.getElementById('weekDda3');
+    day4 = document.getElementById('weekDay4');
+    day5 = document.getElementById('weekDay5');
     
     city = document.getElementById('city').value || 'fremont';
 
