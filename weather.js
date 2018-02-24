@@ -1,4 +1,3 @@
-
 var APPID = "61f94a9fa8130d49c23ed0f74d7e97af";
 var celsius, fahrenheit, loc, icon, humidity, windK, windM, direction, city, sunset, sunrise;
 
@@ -7,7 +6,6 @@ function sendRequest(url){
     xmlhttp.onreadystatechange = function() {
         if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
             var data = JSON.parse(xmlhttp.responseText);
-            console.log(data);
             
             var weather = {};
                 weather.icon = data.weather[0].icon;
@@ -34,13 +32,6 @@ function updateByCityName(name) {
         "&APPID="+APPID;
     sendRequest(url);
 }
-
-//function updateByCityName(name) {
-//     var url = "http://api.openweathermap.org/data/2.5/forecast?"+
-//        "q="+name+
-//        "&APPID="+APPID;
-//    sendRequest(url);
-//}
 
 function min(sec){
     var data = new Date(sec * 1000);
@@ -106,7 +97,72 @@ function citys(){
     direction = document.getElementById('direction');
     sunrise = document.getElementById('sunrise');
     sunset = document.getElementById('sunset');
+    
     city = document.getElementById('city').value || 'fremont';
     
     updateByCityName(city);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

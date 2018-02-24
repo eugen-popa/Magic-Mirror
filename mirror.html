@@ -3,8 +3,8 @@
     <head>
       <meta charset="UTF-8">
       <title>Hello World!</title>
+        <script src="weather.js"></script>
         <script src="forecast.js"></script>
-<!--        <script src="weather.js"></script>-->
         <script src="mirror.js"></script>
         <link rel='stylesheet' type="text/css" href="mirror.css" />
         <link rel='stylesheet' type="text/css" href="weather.css" />
@@ -16,8 +16,8 @@
             <div class="time"></div>
             
 <!--**************************WEATHER*******************************-->
-            <div class="celsius"><span id="celsius">0</span>C&deg;</div>
-        <div class="fahrenheit"><span id="fahrenheit">0</span>F&deg;</div>
+            <div class="celsius"><span id="celsius">0</span>&deg;C</div>
+        <div class="fahrenheit"><span id="fahrenheit">0</span>&deg;F</div>
         <div id="location"><span>Unknow</span></div>
     
         <div class="icon">
@@ -25,7 +25,7 @@
         </div>
         
         <div class="humidity">
-            <img src="/img/icons/humidity.png" height="16px" />
+            <img src="img/icons/humidity.png" height="16px" />
             <samp id="humidity">0</samp>%
         </div>
             
@@ -39,27 +39,27 @@
         </div>
             
             <div id="day1">
-                <img id="forIconDay1" src="/img/icons/01d.png" height="60px" />
+                <img id="forIconDay1" src="img/icons/01d.png" height="60px" />
                 <span id="forCelsDay1">0</span>C&deg;
                 <p id="weekDay1">Day</p>
             </div>
             <div id="day2">
-                <img id="forIconDay2"  src="/img/icons/humidity.png" height="60px" />
+                <img id="forIconDay2"  src="img/icons/01d.png" height="60px" />
                 <samp id="forCelsDay2">0</samp>C&deg;
                 <p id="weekDay2">Day</p>
             </div>
             <div id="day3">
-                <img id="forIconDay3"  src="/img/icons/humidity.png" height="60px" />
+                <img id="forIconDay3"  src="img/icons/01d.png" height="60px" />
                 <samp id="forCelsDay3">0</samp>C
                 <p id="weekDay3">Day</p>
             </div>
             <div id="day4">
-                <img id="forIconDay4"  src="/img/icons/humidity.png" height="60px" />
+                <img id="forIconDay4"  src="img/icons/01d.png" height="60px" />
                 <samp id="forCelsDay4">0</samp>C
                 <p id="weekDay4">Day</p>
             </div>
             <div id="day5">
-                <img id="forIconDay5"  src="/img/icons/humidity.png" height="60px" />
+                <img id="forIconDay5"  src="img/icons/01d.png" height="60px" />
                 <span id="forCelsDay5">0</span>C
                 <p id="weekDay5">Day</p>
             </div>
@@ -68,7 +68,6 @@
         <div class="form">
             <input type="text" id="city" size="10" value=""/>
             <button onclick="citys()">ClicK</button>
-            <button onclick="forcast()">ClicK</button>
         </div>
     </div>
 <!--***************************************************************-->
