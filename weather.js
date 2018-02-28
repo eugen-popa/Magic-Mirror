@@ -1,11 +1,13 @@
+var moment = require('moment');
 var APPID = "61f94a9fa8130d49c23ed0f74d7e97af";
+
 var celsius, fahrenheit, loc, icon, humidity, windK, windM, direction, city, sunset, sunrise;
 
 function sendRequest(url){
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
-            var data = JSON.parse(xmlhttp.responseText);
+            var data = JSON.parse(xmlhttp.responseText);    
             
             var weather = {};
                 weather.icon = data.weather[0].icon;
@@ -102,6 +104,7 @@ function citys(){
     
     updateByCityName(city);
 }
+
 
 
 

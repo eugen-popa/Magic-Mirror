@@ -1,5 +1,6 @@
 var moment = require('moment');
-var APPID = "61f94a9fa8130d49c23ed0f74d7e97af";
+var AP_PID = "61f94a9fa8130d49c23ed0f74d7e97af";
+
 var forcastIcon1,forcastIcon2,forcastIcon3,forcastIcon4,forcastIcon5, 
     celsius1,celsius2,celsius3,celsius4,celsius5,
     day1,day2,day3,day4,day5;
@@ -27,27 +28,27 @@ function sendRequestForcast(url){
                 aray_temp.push(forCast.main.temp);
             }
         }
-            var weather = {}
-                weather.forcastIcon1 = aray_icon[0];
-                weather.forcastIcon2 = aray_icon[1];
-                weather.forcastIcon3 = aray_icon[2];
-                weather.forcastIcon4 = aray_icon[3];
-                weather.forcastIcon5 = aray_icon[4];
+            var weatherForcast = {}
+                weatherForcast.forcastIcon1 = aray_icon[0];
+                weatherForcast.forcastIcon2 = aray_icon[1];
+                weatherForcast.forcastIcon3 = aray_icon[2];
+                weatherForcast.forcastIcon4 = aray_icon[3];
+                weatherForcast.forcastIcon5 = aray_icon[4];
             
-                weather.celsius1 = KtoCForcast(aray_temp[0]);
-                weather.celsius2 = KtoCForcast(aray_temp[1]);
-                weather.celsius3 = KtoCForcast(aray_temp[2]);
-                weather.celsius4 = KtoCForcast(aray_temp[3]);
-                weather.celsius5 = KtoCForcast(aray_temp[4]);
+                weatherForcast.celsius1 = KtoCForcast(aray_temp[0]);
+                weatherForcast.celsius2 = KtoCForcast(aray_temp[1]);
+                weatherForcast.celsius3 = KtoCForcast(aray_temp[2]);
+                weatherForcast.celsius4 = KtoCForcast(aray_temp[3]);
+                weatherForcast.celsius5 = KtoCForcast(aray_temp[4]);
             
-                weather.day1 = moment(aray_day[0] * 1000).format("ddd");
-                weather.day2 = moment(aray_day[1] * 1000).format("ddd");
-                weather.day3 = moment(aray_day[2] * 1000).format("ddd");
-                weather.day4 = moment(aray_day[3] * 1000).format("ddd");
-                weather.day5 = moment(aray_day[4] * 1000).format("ddd");
+                weatherForcast.day1 = moment(aray_day[0] * 1000).format("ddd");
+                weatherForcast.day2 = moment(aray_day[1] * 1000).format("ddd");
+                weatherForcast.day3 = moment(aray_day[2] * 1000).format("ddd");
+                weatherForcast.day4 = moment(aray_day[3] * 1000).format("ddd");
+                weatherForcast.day5 = moment(aray_day[4] * 1000).format("ddd");
             
             
-        update(weather);
+        updateForcast(weatherForcast);
         }
     };
     xmlhttp.open('GET', url, true);
@@ -57,22 +58,13 @@ function sendRequestForcast(url){
 function updateByCityNameForcast(name) {
      var url = "http://api.openweathermap.org/data/2.5/forecast?"+
         "q="+name+
-        "&APPID="+APPID;
+        "&APPID="+AP_PID;
     sendRequestForcast(url);
 }
 
 function KtoCForcast(k) {
     return Math.round(k - 273.15);
 }
-//function KtoF(k) {
-//    return Math.round(k*(9/5)-459.67);
-//}
-
-//function time(sec){
-//    var data = new Date(sec * 1000);
-//    var time = data.toLocaleTimeString('it-IT', {hour: '2-digit', minute:'2-digit'});
-//    return time;
-//}
 
 function updateForcast(weather){
     forcastIcon1.src = "img/icons/" + weather.forcastIcon1 + '.png';
@@ -91,8 +83,7 @@ function updateForcast(weather){
     weekDay2.innerHTML = weather.day2;
     weekDay3.innerHTML = weather.day3;
     weekDay4.innerHTML = weather.day4;
-    weekDay5.innerHTML = weather.day5;
-    
+    weekDay5.innerHTML = weather.day5; 
 }
 
 function forcast(){
