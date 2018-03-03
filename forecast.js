@@ -1,18 +1,25 @@
 var moment = require('moment');
-var AP_PID = "61f94a9fa8130d49c23ed0f74d7e97af";
+var AP_PID = "61f94a9fa8130d49c23ed0f74d7e97af"; 
 
 var forcastIcon1,forcastIcon2,forcastIcon3,forcastIcon4,forcastIcon5, 
     celsius1,celsius2,celsius3,celsius4,celsius5,
     day1,day2,day3,day4,day5;
 
-function sendRequestForcast(url){
+var lat_lon, lat,lon;
+
+function sendRequestForcast(url) {
     var xmlhttp = new XMLHttpRequest();
     
     xmlhttp.onreadystatechange = function() {
         if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
             
             var data = JSON.parse(xmlhttp.responseText);
-//            console.log(data);
+           console.log(data);
+            
+            lat = data.city.coord.lat
+            lon = data.city.coord.lon
+            
+            console.log(lat_lon);
             
             var aray_icon = [];
             var aray_temp = [];
@@ -29,6 +36,7 @@ function sendRequestForcast(url){
             }
         }
             var weatherForcast = {}
+            
                 weatherForcast.forcastIcon1 = aray_icon[0];
                 weatherForcast.forcastIcon2 = aray_icon[1];
                 weatherForcast.forcastIcon3 = aray_icon[2];
@@ -46,7 +54,6 @@ function sendRequestForcast(url){
                 weatherForcast.day3 = moment(aray_day[2] * 1000).format("ddd");
                 weatherForcast.day4 = moment(aray_day[3] * 1000).format("ddd");
                 weatherForcast.day5 = moment(aray_day[4] * 1000).format("ddd");
-            
             
         updateForcast(weatherForcast);
         }
@@ -67,6 +74,9 @@ function KtoCForcast(k) {
 }
 
 function updateForcast(weather){
+    
+    lat_lon.innerHTML = lat+", "+lon; 
+    
     forcastIcon1.src = "img/icons/" + weather.forcastIcon1 + '.png';
     forcastIcon2.src = "img/icons/" + weather.forcastIcon2 + '.png';
     forcastIcon3.src = "img/icons/" + weather.forcastIcon3 + '.png';
@@ -87,6 +97,8 @@ function updateForcast(weather){
 }
 
 function forcast(){
+    
+    lat_lon= document.getElementById('the-time');
     
     forcastIcon1 = document.getElementById('forIconDay1');
     forcastIcon2 = document.getElementById('forIconDay2');

@@ -9,7 +9,9 @@ function sendRequest(url){
         if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
             var data = JSON.parse(xmlhttp.responseText);    
             
-            var weather = {};
+            console.log(data);
+            
+            var weather = {};    
                 weather.icon = data.weather[0].icon;
                 weather.humidity = data.main.humidity;
                 weather.windK = KM(data.wind.speed); // this is for km

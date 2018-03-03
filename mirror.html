@@ -3,18 +3,19 @@
     <head>
       <meta charset="UTF-8">
       <title>Hello World!</title>
-        <script src="weather.js"></script>
-        <script src="forecast.js"></script>
-        <script src="mirror.js"></script>
-        <script src="time.js"></script>
+        <script type="text/javascript" src="mirror.js"></script>
+        <script type="text/javascript" src="weather.js"></script>
+        <script type="text/javascript" src="forecast.js"></script>
+        <script type="text/javascript" src="time.js"></script>
         <link rel='stylesheet' type="text/css" href="mirror.css" />
         <link rel='stylesheet' type="text/css" href="weather.css" />
 
     </head>
-    <body>
+    <body onload="citys(), forcast()">
         <div class="info">
             
-            <div class="time"></div>
+            <div class="time"  id="the-time"></div>
+            
             
 <!--**************************WEATHER*******************************-->
             <div class="celsius"><span id="celsius">0</span>&deg;C</div>
@@ -22,7 +23,7 @@
         <div id="location"><span>Unknow</span></div>
     
         <div class="icon">
-            <img id="icon" width="200px" src="img/icons/03d.png"/>
+            <img id="icon" width="200px" src="img/icons/01d.png"/>
         </div>
         
         <div class="humidity">
@@ -68,8 +69,8 @@
             
         <div class="form">
             <input type="text" id="city" size="10" value=""/>
-            <button onclick="citys(), forcast(), time()">ClicK</button>
-            <button onclick="timeZ()">ClicK</button>
+            <button onclick="citys(), forcast()">ClicK</button>
+<!--            <button onclick="timeZ()">ClicK</button>-->
         </div>
     </div>
 <!--***************************************************************-->
