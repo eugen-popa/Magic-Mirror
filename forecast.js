@@ -14,12 +14,12 @@ function sendRequestForcast(url) {
         if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
             
             var data = JSON.parse(xmlhttp.responseText);
-           console.log(data);
+           //console.log(data);
             
             lat = data.city.coord.lat
             lon = data.city.coord.lon
             
-            console.log(lat_lon);
+            //console.log(lat_lon);
             
             var aray_icon = [];
             var aray_temp = [];
@@ -75,7 +75,7 @@ function KtoCForcast(k) {
 
 function updateForcast(weather){
     
-    lat_lon.innerHTML = lat+", "+lon; 
+    lat_lon.innerHTML = lat+", "+lon;
     
     forcastIcon1.src = "img/icons/" + weather.forcastIcon1 + '.png';
     forcastIcon2.src = "img/icons/" + weather.forcastIcon2 + '.png';

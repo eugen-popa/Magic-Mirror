@@ -9,7 +9,7 @@ function sendRequest(url){
         if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
             var data = JSON.parse(xmlhttp.responseText);    
             
-            console.log(data);
+            //console.log(data);
             
             var weather = {};    
                 weather.icon = data.weather[0].icon;
