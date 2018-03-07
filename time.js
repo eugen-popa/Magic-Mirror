@@ -20,7 +20,7 @@ var xmlhttpp = new XMLHttpRequest();
             console.log(lock)
             second(lock);
         }
-};
+}
 xmlhttpp.send(); 
 }
 
