@@ -12,7 +12,7 @@ function sendRequestForcast(url) {
         if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
             
             var data = JSON.parse(xmlhttp.responseText);
-           //console.log(data);
+           console.log(data);
             
             var aray_icon = [];
             var aray_temp = [];
