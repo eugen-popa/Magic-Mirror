@@ -23,9 +23,10 @@ var xmlhttpp = new XMLHttpRequest();
 xmlhttpp.send(); 
 }
  
-//************************************************************************
+//**********************************************************************
 
 function third(loc){
+var API_TIME = "AIzaSyDxD31Mqfq7aQ6_bnK-ZpcbxsU075tDwog";
 var timeDate = new Date()
 var timestamp = timeDate.getTime()/1000 + timeDate.getTimezoneOffset() * 60 
 console.log()
@@ -42,9 +43,8 @@ xhr.onload = function(){
         console.log(data_out)
         if (data_out.status == 'OK'){ 
             var offsets = data_out.dstOffset * 1000 + data_out.rawOffset * 1000 
-            //var localdate = new Date(timestamp * 1000 + offsets)
-            var localdate = timeDate.toLocaleTimeString('it-IT', 
-                                            {hour: '2-digit', minute:'2-digit'})
+            var localdate = new Date(timestamp * 1000 + offsets)
+            
             console.log(localdate);
             document.getElementById('the-time').innerHTML = localdate;
         }
