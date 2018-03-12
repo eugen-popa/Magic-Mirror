@@ -4,32 +4,26 @@
       <meta charset="UTF-8">
       <title>Hello World!</title>
 
-        <script type="text/javascript" src="mirror.js"></script>
-        <script type="text/javascript" src="weather.js"></script>
-        <script type="text/javascript" src="forecast.js"></script>
-        <script type="text/javascript" src="time.js"></script>
-
-        <script src="weather.js"></script>
-        <script src="forecast.js"></script>
-        <script src="mirror.js"></script>
+        <script type="text/javascript" src="./modules/mirror.js"></script>
+        <script type="text/javascript" src="./modules/weather.js"></script>
+        <script type="text/javascript" src="./modules/forecast.js"></script>
+        <script type="text/javascript" src="./modules/time.js"></script>
 <!--        <script src="time.js"></script>-->
 
-        <link rel='stylesheet' type="text/css" href="mirror.css" />
-        <link rel='stylesheet' type="text/css" href="weather.css" />
+        <link rel='stylesheet' type="text/css" href="./style/mirror.css" />
+        <link rel='stylesheet' type="text/css" href="./style/weather.css" />
 
     </head>
-<<<<<<< HEAD
+
     <body>
 <!--         <body onload="citys(), forcast(), first()">-->
-=======
+
 <!--    <body onload="citys(), forcast(), first()">-->
-        <body>
->>>>>>> 3f4cbc9a59f1c0e1dcdecf4ce6fcd562c3a410be
+
         <div class="info">
             
-            <div class="time" id="the-time"></div>
-            
-            
+            <div class="time" id="the-time">00:00:00</div>
+                  
 <!--**************************WEATHER*******************************-->
             <div class="celsius"><span id="celsius">0</span>&deg;C</div>
         <div class="fahrenheit"><span id="fahrenheit">0</span>&deg;F</div>
@@ -78,8 +72,7 @@
                 <span id="forCelsDay5">0</span>&deg;C
                 <p id="weekDay5">Day</p>
             </div>
-            
-            
+               
         <div class="form">
             <input type="text" id="city" size="10" value=""/>
             <button onclick="citys(), forcast(), first()">ClicK</button>
