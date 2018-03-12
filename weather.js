@@ -1,5 +1,6 @@
 var moment = require('moment');
 var APPID = "61f94a9fa8130d49c23ed0f74d7e97af";
+var API_TIME = "AIzaSyDxD31Mqfq7aQ6_bnK-ZpcbxsU075tDwog";
 
 var celsius, fahrenheit, loc, icon, humidity, windK, windM, direction, city, sunset, sunrise;
 
@@ -9,7 +10,7 @@ function sendRequest(url){
         if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
             var data = JSON.parse(xmlhttp.responseText);    
             
-            //console.log(data);
+            console.log(data);
             
             var weather = {};    
                 weather.icon = data.weather[0].icon;
@@ -40,6 +41,64 @@ function updateByCityName(name) {
 function min(sec){
     var data = new Date(sec * 1000);
     var time = data.toLocaleTimeString('it-IT', {hour: '2-digit', minute:'2-digit'});
+
+    
+    
+    
+var locationTime = data.getTime()/1000 + data.getTimezoneOffset() * 60 
+    
+var url_Timezone = 'https://maps.googleapis.com/maps/api/timezone/json?location=' 
+            + lock+ '&timestamp=' 
+            + locationTime 
+            + '&key=' 
+            + API_TIME;
+    
+var xhr = new XMLHttpRequest(); 
+xhr.open('GET', url_Timezone); 
+xhr.onload = function(){
+    if (xhr.status === 200){ 
+        var data_out = JSON.parse(xhr.responseText); 
+        console.log(data_out);
+        if (data_out.status == 'OK'){ 
+            var offsets = data_out.dstOffset * 1000 + data_out.rawOffset * 1000 
+            console.log(offsets * 1000)
+            console.log(locationTime * 1000)
+            var localDate = new Date(locationTime * 1000 + offsets); 
+            
+//            console.log(localDate.toLocaleString());
+            console.log(localDate);
+            var refreshDate = new Date();
+            console.log(data);
+            console.log(refreshDate);
+            
+            var millisecondselapsed = refreshDate - data;
+            console.log(millisecondselapsed)
+            
+            localDate.setMilliseconds(localDate.getMilliseconds()+ millisecondselapsed);
+            
+            setInterval(function(){
+                localDate.setSeconds(localDate.getSeconds()+1)
+                document.getElementById('the-time').innerHTML = 
+                    localDate.toLocaleTimeString() + ' (' + week[ localDate.getDay() ] + ')';
+                }, 1000);
+        }
+    }
+    else{
+        alert('Request failed.:( '+ xhr.status)
+    }
+}
+xhr.send()
+}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     return time;
 }
 

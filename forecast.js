@@ -1,3 +1,4 @@
+var url = require('url');
 var moment = require('moment');
 var AP_PID = "61f94a9fa8130d49c23ed0f74d7e97af"; 
 
@@ -28,7 +29,7 @@ function sendRequestForcast(url) {
         for(var i = 0; i < data.list.length; i++){
             var forCast = data.list[i];
               
-            if (forCast.dt_txt.search("18:00:00") != -1){
+            if (forCast.dt_txt.search("15:00:00") != -1){
                 
                 aray_icon.push(forCast.weather[0].icon);
                 aray_day.push(forCast.dt);
@@ -75,8 +76,6 @@ function KtoCForcast(k) {
 
 function updateForcast(weather){
     
-    lat_lon.innerHTML = lat+", "+lon;
-    
     forcastIcon1.src = "img/icons/" + weather.forcastIcon1 + '.png';
     forcastIcon2.src = "img/icons/" + weather.forcastIcon2 + '.png';
     forcastIcon3.src = "img/icons/" + weather.forcastIcon3 + '.png';
@@ -122,5 +121,6 @@ function forcast(){
 
     updateByCityNameForcast(city);
 }
+
 
 
