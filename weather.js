@@ -39,6 +39,7 @@ function updateByCityName(name) {
 }
 
 function min(sec){
+<<<<<<< HEAD
     var data = new Date(sec * 1000);
     var time = data.toLocaleTimeString('it-IT', {hour: '2-digit', minute:'2-digit'});
 
@@ -100,6 +101,35 @@ xhr.send()
     
     
     return time;
+=======
+
+    //var API_TIME = "AIzaSyDxD31Mqfq7aQ6_bnK-ZpcbxsU075tDwog";
+    var timeDate = new Date(sec * 1000);
+//    var timestamp = timeDate.getTime()/1000 + timeDate.getTimezoneOffset() * 60 
+    console.log(timeDate)
+//
+//    var apicall = 'https://maps.googleapis.com/maps/api/timezone/json?location=' 
+//        + 'miami'+ '&timestamp=' 
+//        + timeDate + '&key=' 
+//        + API_TIME;
+//    
+//    var xhr = new XMLHttpRequest() 
+//    xhr.open('GET', apicall) 
+//    xhr.onload = function(){
+//        if (xhr.status === 200){ 
+//            var data_out = JSON.parse(xhr.responseText) 
+//            console.log(data_out)
+//        if (data_out.status == 'OK'){ 
+//            var offsets = data_out.dstOffset * 1000 + data_out.rawOffset * 1000 
+//            var localdate = new Date(timestamp * 1000 + offsets)
+            var time = timeDate.toLocaleTimeString('it-IT', {hour: '2-digit', minute:'2-digit'});
+        return time;
+//            console.log(localdate);
+//        }
+//    }
+//}
+//xhr.send()
+>>>>>>> 3f4cbc9a59f1c0e1dcdecf4ce6fcd562c3a410be
 }
 
 function degreesToDirection(degres){

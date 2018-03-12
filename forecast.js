@@ -6,8 +6,6 @@ var forcastIcon1,forcastIcon2,forcastIcon3,forcastIcon4,forcastIcon5,
     celsius1,celsius2,celsius3,celsius4,celsius5,
     day1,day2,day3,day4,day5;
 
-var lat_lon, lat,lon;
-
 function sendRequestForcast(url) {
     var xmlhttp = new XMLHttpRequest();
     
@@ -15,12 +13,7 @@ function sendRequestForcast(url) {
         if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
             
             var data = JSON.parse(xmlhttp.responseText);
-           //console.log(data);
-            
-            lat = data.city.coord.lat
-            lon = data.city.coord.lon
-            
-            //console.log(lat_lon);
+           console.log(data);
             
             var aray_icon = [];
             var aray_temp = [];
@@ -96,8 +89,6 @@ function updateForcast(weather){
 }
 
 function forcast(){
-    
-    lat_lon= document.getElementById('the-time');
     
     forcastIcon1 = document.getElementById('forIconDay1');
     forcastIcon2 = document.getElementById('forIconDay2');
