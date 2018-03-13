@@ -17,8 +17,8 @@ function sendRequest(url){
                   locCityName.lon = data.coord.lon;
             const loc = locCityName.lat + ", " + locCityName.lon;
             
-            var time1 = min(data.sys.sunrise, loc);
-            var time2 = min(data.sys.sunset, loc);
+             min(data.sys.sunrise, loc, 'sunrise');
+             min(data.sys.sunset, loc, 'sunset');
             
             var weather = {};    
                 weather.icon = data.weather[0].icon;
@@ -28,8 +28,6 @@ function sendRequest(url){
                 weather.loc = data.name;
                 weather.celsius = KtoC(data.main.temp);
                 weather.fahrenheit = KtoF(data.main.temp);
-                weather.sunrise = time1;
-                weather.sunset = time2;
                 weather.direction = degreesToDirection(data.wind.deg);
             
             update(weather);
@@ -45,15 +43,6 @@ function updateByCityName(name) {
         "&APPID="+APPID;
     sendRequest(url);
 }
-
-//function min(sec){
-//
-//    var data = new Date(sec * 1000);
-//    console.log(data)
-//    var time = data.toLocaleTimeString('it-IT', {hour: '2-digit', minute:'2-digit'});
-//return time;
-//    
-//}
 
 function degreesToDirection(degres){
     var range = 360/8;
@@ -119,23 +108,9 @@ function citys(){
     updateByCityName(city);
 }
 
-//module.exports = sendRequest;
-
-
-
-
-
-
-function min(sec, loc){
-    
-    console.log(loc)
-    
+function min(sec, loc, myelement){
     var targetDate = new Date(sec * 1000) 
-    console.log(targetDate)
-    
     var timestamp = targetDate.getTime()/1000 + targetDate.getTimezoneOffset() * 60
-    console.log(timestamp)
- 
     var apicall = 'https://maps.googleapis.com/maps/api/timezone/json?location=' 
             + loc+ '&timestamp=' 
             + timestamp + '&key=' 
@@ -148,12 +123,11 @@ function min(sec, loc){
             var output = JSON.parse(xhr.responseText) 
  
             if (output.status == 'OK'){ 
-                
-                var offsets = output.dstOffset * 1000 + output.rawOffset * 1000 
-                
-                var time = new Date(timestamp * 1000 + offsets) 
-                    console.log(time)
-                return time;
+                var offsets = output.dstOffset * 1000 + output.rawOffset * 1000;
+                var time = new Date(timestamp * 1000 + offsets);
+                var time2 = time.toLocaleTimeString('it-IT', {hour: '2-digit', minute:'2-digit'});
+                elem = document.getElementById(myelement);
+                elem.innerHTML = time2;
             }
         }
         else{
@@ -162,9 +136,6 @@ function min(sec, loc){
     }
     xhr.send()
 }
-  
-
-
 
 
 
