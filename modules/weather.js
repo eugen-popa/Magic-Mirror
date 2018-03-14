@@ -1,4 +1,4 @@
-//var min = require("sunSetRise");
+var min = require("./sunSetRise");
 var moment = require('moment');
 var APPID = "61f94a9fa8130d49c23ed0f74d7e97af";
 var API_TIME = "AIzaSyDxD31Mqfq7aQ6_bnK-ZpcbxsU075tDwog";

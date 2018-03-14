@@ -1,4 +1,4 @@
-var wheather = requite('wheater');
+//var wheather = requite('wheater');
 
 function min(sec){
 
