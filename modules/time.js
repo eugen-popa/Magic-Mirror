@@ -1,13 +1,16 @@
+
+//var url = require("./modules/url");
 var API_FORCAST = "61f94a9fa8130d49c23ed0f74d7e97af"; 
 var API_TIME = "AIzaSyDxD31Mqfq7aQ6_bnK-ZpcbxsU075tDwog";
 var clear = null;
+
 function second(city) {
 var urll = "http://api.openweathermap.org/data/2.5/forecast?"+
         "q="+ city +
         "&APPID="+API_FORCAST;
 
 var xmlhttpp = new XMLHttpRequest();
-    xmlhttpp.open('GET', urll);
+    xmlhttpp.open('GET', urll)
     xmlhttpp.onload = function(){
         if(xmlhttpp.status == 200){
         var data = JSON.parse(xmlhttpp.responseText);
@@ -19,13 +22,14 @@ var xmlhttpp = new XMLHttpRequest();
             third(loc);
         }
 }
-xmlhttpp.send(); 
+//xmlhttpp.open('GET', url, 'true')
+xmlhttpp.send()
 }
  
 //**********************************************************************
 
 function third(loc){
-var API_TIME = "AIzaSyDxD31Mqfq7aQ6_bnK-ZpcbxsU075tDwog"; 
+ 
 var daysofweek = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'];
  
     var targetDate = new Date();
@@ -62,7 +66,7 @@ var daysofweek = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'];
             alert('Request failed. ' + xhr.status)
         }
     }
-    xhr.send() 
+    xhr.send(); 
 }
 
 function first(){
