@@ -1,6 +1,6 @@
 var API_FORCAST = "61f94a9fa8130d49c23ed0f74d7e97af"; 
 var API_TIME = "AIzaSyDxD31Mqfq7aQ6_bnK-ZpcbxsU075tDwog";
-
+var clear  = null;
 function second(city) {
 var urll = "http://api.openweathermap.org/data/2.5/forecast?"+
         "q="+ city +
@@ -39,7 +39,7 @@ var daysofweek = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']
             + loc+ '&timestamp=' 
             + timestamp + '&key=' 
             + API_TIME;
-    
+
     var xhr = new XMLHttpRequest() 
     xhr.open('GET', apicall) 
     xhr.onload = function(){
@@ -54,16 +54,20 @@ var daysofweek = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']
                 
                 var localdate = new Date(timestamp * 1000 + offsets) 
                 console.log(localdate)
-                ////////////////////////////////////////////////////////////////////////////////////////
+                
                 var refreshDate = new Date()
                 console.log(refreshDate)
                 
                 var millisecondselapsed = refreshDate - targetDate 
                 console.log(millisecondselapsed)
                 
-                localdate.setMilliseconds(localdate.getMilliseconds()+ millisecondselapsed) 
+                localdate.setMilliseconds(localdate.getMilliseconds()+ millisecondselapsed)
+                document.getElementById('the-time').innerHTML = '';
                
-                setInterval(function(){
+                if (clear){
+                    clearInterval(clear);
+                }
+                clear = setInterval(function(){
                     localdate.setSeconds(localdate.getSeconds()+1)
                     
                 document.getElementById('the-time').innerHTML = 
