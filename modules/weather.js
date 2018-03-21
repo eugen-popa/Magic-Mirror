@@ -17,9 +17,17 @@ function sendRequest(url){
                   locCityName.lon = data.coord.lon;
             const loc = locCityName.lat + ", " + locCityName.lon;
             
+<<<<<<< HEAD
+//            var time1 = min(data.sys.sunrise, loc);
+//            console.log('asha');
+//            console.log(min(data.sys.sunrise,loc));
+//            var time2 = min(data.sys.sunset, loc);
+//            console.log('hello '+time1)
+=======
              min(data.sys.sunrise, loc, 'sunrise');
              min(data.sys.sunset, loc, 'sunset');
             
+>>>>>>> 6054ee043d012c0319489cc5c7b20bc3ad3cb0a1
             var weather = {};    
                 weather.icon = data.weather[0].icon;
                 weather.humidity = data.main.humidity;
@@ -28,6 +36,11 @@ function sendRequest(url){
                 weather.loc = data.name;
                 weather.celsius = KtoC(data.main.temp);
                 weather.fahrenheit = KtoF(data.main.temp);
+<<<<<<< HEAD
+                weather.sunrise = min(data.sys.sunrise, loc);
+                weather.sunset = min(data.sys.sunset, loc);
+=======
+>>>>>>> 6054ee043d012c0319489cc5c7b20bc3ad3cb0a1
                 weather.direction = degreesToDirection(data.wind.deg);
             
             update(weather);
@@ -44,6 +57,18 @@ function updateByCityName(name) {
     sendRequest(url);
 }
 
+<<<<<<< HEAD
+function min(sec){
+
+    var data = new Date(sec * 1000);
+    console.log(data)
+    var time = data.toLocaleTimeString('it-IT', {hour: '2-digit', minute:'2-digit'});
+return time;
+    
+}
+
+=======
+>>>>>>> 6054ee043d012c0319489cc5c7b20bc3ad3cb0a1
 function degreesToDirection(degres){
     var range = 360/8;
     var low = 360 - range;
@@ -79,16 +104,23 @@ function KM(km){
 
 function update(weather){
     
+    
     celsius.innerHTML = weather.celsius;
     fahrenheit.innerHTML = weather.fahrenheit;
     loc.innerHTML = weather.loc;
     icon.src = "img/icons/" + weather.icon + '.png';
+    if(weather.icon == '50n' || weather.icon == '10n'){
+        icon.src = 'img/icons/202.gif'
+    }
     humidity.innerHTML = weather.humidity;
     windK.innerHTML = weather.windK;
     windM.innerHTML = weather.windM;
     direction.innerHTML = weather.direction;
     sunset.innerHTML = weather.sunset;
     sunrise.innerHTML = weather.sunrise;
+    
+    
+    
 }
 
 function citys(){
@@ -108,6 +140,56 @@ function citys(){
     updateByCityName(city);
 }
 
+<<<<<<< HEAD
+//module.exports = sendRequest;
+
+
+
+
+
+
+//function min(sec, loc){
+//    
+//    console.log(loc)
+//    
+//    var targetDate = new Date(sec * 1000) 
+//    console.log(targetDate)
+//    
+//    var timestamp = targetDate.getTime()/1000 + targetDate.getTimezoneOffset() * 60
+//    console.log(timestamp)
+// 
+//    var apicall = 'https://maps.googleapis.com/maps/api/timezone/json?location=' 
+//            + loc+ '&timestamp=' 
+//            + timestamp + '&key=' 
+//            + API_TIME;
+//    
+//    var xhr = new XMLHttpRequest() 
+//    xhr.open('GET', apicall) 
+//    xhr.onload = function(){
+//        if (xhr.status === 200){ 
+//            var output = JSON.parse(xhr.responseText) 
+// 
+//            if (output.status == 'OK'){ 
+//                
+//                var offsets = output.dstOffset * 1000 + output.rawOffset * 1000 
+//                
+//                var time1 = new Date(timestamp * 1000 + offsets) 
+//                    console.log('llllllllll'+time1)
+//                return ('time1');
+//            }
+//        }
+//        else{
+//            alert('Request failed. :(( Returned status of ' + xhr.status)
+//        }
+//    }
+//    xhr.send()
+//    
+//}
+  
+
+
+=======
+>>>>>>> 6054ee043d012c0319489cc5c7b20bc3ad3cb0a1
 
 
 

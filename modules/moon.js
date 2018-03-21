@@ -4,7 +4,7 @@ function moon(obj){
 		gets.push(i+"="+encodeURIComponent(obj[i]))
 	}	
 	var xmlhttp = new XMLHttpRequest()
-	var url = "http://www.icalendar37.net/lunar/api/?"+gets.join("&")
+	var url ="http://www.icalendar37.net/lunar/api/?"+gets.join("&")
 	xmlhttp.onload = function() {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 			var moon  = JSON.parse(xmlhttp.responseText)
