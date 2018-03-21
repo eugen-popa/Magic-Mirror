@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		year  		:new Date().getFullYear(),
 		size		:90, 
 		lightColor	:"#F9CE21", 
-		shadeColor	:"#5d5d5d", 
+		shadeColor	:"#969696", 
 		sizeQuarter	:20, 
 		texturize	:true 
 	}
