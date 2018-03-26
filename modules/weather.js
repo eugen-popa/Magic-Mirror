@@ -1,4 +1,4 @@
-var min = require("./modules/sunSetRise");
+//var min = require("./modules/sunSetRise");
 var moment = require('moment');
 var APPID = "61f94a9fa8130d49c23ed0f74d7e97af";
 var API_TIME = "AIzaSyDxD31Mqfq7aQ6_bnK-ZpcbxsU075tDwog";
@@ -17,17 +17,17 @@ function sendRequest(url){
                   locCityName.lon = data.coord.lon;
             const loc = locCityName.lat + ", " + locCityName.lon;
             
-<<<<<<< HEAD
+
 //            var time1 = min(data.sys.sunrise, loc);
 //            console.log('asha');
 //            console.log(min(data.sys.sunrise,loc));
 //            var time2 = min(data.sys.sunset, loc);
 //            console.log('hello '+time1)
-=======
+
              min(data.sys.sunrise, loc, 'sunrise');
              min(data.sys.sunset, loc, 'sunset');
             
->>>>>>> 6054ee043d012c0319489cc5c7b20bc3ad3cb0a1
+
             var weather = {};    
                 weather.icon = data.weather[0].icon;
                 weather.humidity = data.main.humidity;
@@ -36,11 +36,11 @@ function sendRequest(url){
                 weather.loc = data.name;
                 weather.celsius = KtoC(data.main.temp);
                 weather.fahrenheit = KtoF(data.main.temp);
-<<<<<<< HEAD
+
                 weather.sunrise = min(data.sys.sunrise, loc);
                 weather.sunset = min(data.sys.sunset, loc);
-=======
->>>>>>> 6054ee043d012c0319489cc5c7b20bc3ad3cb0a1
+
+
                 weather.direction = degreesToDirection(data.wind.deg);
             
             update(weather);
@@ -57,7 +57,6 @@ function updateByCityName(name) {
     sendRequest(url);
 }
 
-<<<<<<< HEAD
 function min(sec){
 
     var data = new Date(sec * 1000);
@@ -67,8 +66,6 @@ return time;
     
 }
 
-=======
->>>>>>> 6054ee043d012c0319489cc5c7b20bc3ad3cb0a1
 function degreesToDirection(degres){
     var range = 360/8;
     var low = 360 - range;
@@ -104,7 +101,6 @@ function KM(km){
 
 function update(weather){
     
-    
     celsius.innerHTML = weather.celsius;
     fahrenheit.innerHTML = weather.fahrenheit;
     loc.innerHTML = weather.loc;
@@ -118,9 +114,7 @@ function update(weather){
     direction.innerHTML = weather.direction;
     sunset.innerHTML = weather.sunset;
     sunrise.innerHTML = weather.sunrise;
-    
-    
-    
+     
 }
 
 function citys(){
@@ -138,9 +132,21 @@ function citys(){
     city = document.getElementById('city').value || 'fremont';
     
     updateByCityName(city);
+    
+    document.getElementById('city').focus();
+
 }
 
-<<<<<<< HEAD
+// document.addEventListener('keypress', function(event){
+//        if(event.keyCode === 13 || event.which === 13){
+//            console.log('key')
+//        city = document.getElementById('city').value || 'fremont';
+//            updateByCityName(city);
+//        }
+// })
+
+
+
 //module.exports = sendRequest;
 
 
@@ -187,9 +193,6 @@ function citys(){
 //}
   
 
-
-=======
->>>>>>> 6054ee043d012c0319489cc5c7b20bc3ad3cb0a1
 
 
 

@@ -1,4 +1,4 @@
-var url = require('url');
+//var url = require('url');
 var moment = require('moment');
 var AP_PID = "61f94a9fa8130d49c23ed0f74d7e97af"; 
 
@@ -113,5 +113,11 @@ function forcast(){
     updateByCityNameForcast(city);
 }
 
-
+// document.addEventListener('keypress', function(event){
+//        if(event.keyCode === 13 || event.which === 13){
+//            console.log('key')
+//            city = document.getElementById('city').value || 'fremont';
+//            updateByCityNameForcast(city);
+//        }
+// })
 
