@@ -5,9 +5,6 @@ var API_TIME = "AIzaSyDxD31Mqfq7aQ6_bnK-ZpcbxsU075tDwog";
 
 var clear  = null;
 
-var clear = null;
-
-
 function second(city) {
 var urll = "http://api.openweathermap.org/data/2.5/forecast?"+
         "q="+ city +

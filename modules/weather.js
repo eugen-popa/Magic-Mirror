@@ -1,7 +1,9 @@
-//var min = require("./modules/sunSetRise");
+var url_key = require("./config/config");
 var moment = require('moment');
-var APPID = "61f94a9fa8130d49c23ed0f74d7e97af";
-var API_TIME = "AIzaSyDxD31Mqfq7aQ6_bnK-ZpcbxsU075tDwog";
+//var APPID = "61f94a9fa8130d49c23ed0f74d7e97af";
+//var API_TIME = "AIzaSyDxD31Mqfq7aQ6_bnK-ZpcbxsU075tDwog";
+
+
 
 var celsius, fahrenheit, loc, icon, humidity, windK, windM, direction, city, sunset, sunrise;
 
@@ -24,10 +26,9 @@ function sendRequest(url){
 //            var time2 = min(data.sys.sunset, loc);
 //            console.log('hello '+time1)
 
-             min(data.sys.sunrise, loc, 'sunrise');
-             min(data.sys.sunset, loc, 'sunset');
+//             min(data.sys.sunrise, loc, 'sunrise');
+//             min(data.sys.sunset, loc, 'sunset');
             
-
             var weather = {};    
                 weather.icon = data.weather[0].icon;
                 weather.humidity = data.main.humidity;
@@ -51,9 +52,7 @@ function sendRequest(url){
 }
 
 function updateByCityName(name) {
-     var url = "http://api.openweathermap.org/data/2.5/weather?"+
-        "q="+name+
-        "&APPID="+APPID;
+     var url = url_key.weather.url + "q=" + name + "&APPID=" + url_key.weather.key;
     sendRequest(url);
 }
 
