@@ -2,12 +2,9 @@
 //var url = require("./modules/url");
 var API_FORCAST = "61f94a9fa8130d49c23ed0f74d7e97af"; 
 var API_TIME = "AIzaSyDxD31Mqfq7aQ6_bnK-ZpcbxsU075tDwog";
-<<<<<<< HEAD
-var clear  = null;
-=======
-var clear = null;
 
->>>>>>> 6054ee043d012c0319489cc5c7b20bc3ad3cb0a1
+var clear  = null;
+
 function second(city) {
 var urll = "http://api.openweathermap.org/data/2.5/forecast?"+
         "q="+ city +
@@ -53,14 +50,12 @@ var daysofweek = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'];
             if (output.status == 'OK'){  
                 var offsets = output.dstOffset * 1000 + output.rawOffset * 1000 
                 var localdate = new Date(timestamp * 1000 + offsets) 
-<<<<<<< HEAD
+
                 console.log(localdate)
-                
-=======
->>>>>>> 6054ee043d012c0319489cc5c7b20bc3ad3cb0a1
+
                 var refreshDate = new Date()
                 var millisecondselapsed = refreshDate - targetDate 
-<<<<<<< HEAD
+
                 console.log(millisecondselapsed)
                 
                 localdate.setMilliseconds(localdate.getMilliseconds()+ millisecondselapsed)
@@ -71,14 +66,13 @@ var daysofweek = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'];
                 }
                 clear = setInterval(function(){
                     localdate.setSeconds(localdate.getSeconds()+1)
-                    
-=======
+
                 localdate.setMilliseconds(localdate.getMilliseconds()+ millisecondselapsed) 
                
-                if (clear){clearInterval(clear)}
-                clear = setInterval(function(){
-                    localdate.setSeconds(localdate.getSeconds()+1)     
->>>>>>> 6054ee043d012c0319489cc5c7b20bc3ad3cb0a1
+//                if (clear){clearInterval(clear)}
+//                clear = setInterval(function(){
+//                    localdate.setSeconds(localdate.getSeconds()+1)     
+
                 document.getElementById('the-time').innerHTML = 
                      localdate.toLocaleTimeString() +" "+ daysofweek[localdate.getDay() ]
                

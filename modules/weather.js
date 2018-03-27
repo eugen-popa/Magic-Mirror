@@ -16,18 +16,17 @@ function sendRequest(url){
                   locCityName.lat = data.coord.lat
                   locCityName.lon = data.coord.lon;
             const loc = locCityName.lat + ", " + locCityName.lon;
-            
-<<<<<<< HEAD
+
 //            var time1 = min(data.sys.sunrise, loc);
 //            console.log('asha');
 //            console.log(min(data.sys.sunrise,loc));
 //            var time2 = min(data.sys.sunset, loc);
 //            console.log('hello '+time1)
-=======
+
              min(data.sys.sunrise, loc, 'sunrise');
              min(data.sys.sunset, loc, 'sunset');
             
->>>>>>> 6054ee043d012c0319489cc5c7b20bc3ad3cb0a1
+
             var weather = {};    
                 weather.icon = data.weather[0].icon;
                 weather.humidity = data.main.humidity;
@@ -36,11 +35,10 @@ function sendRequest(url){
                 weather.loc = data.name;
                 weather.celsius = KtoC(data.main.temp);
                 weather.fahrenheit = KtoF(data.main.temp);
-<<<<<<< HEAD
+
                 weather.sunrise = min(data.sys.sunrise, loc);
                 weather.sunset = min(data.sys.sunset, loc);
-=======
->>>>>>> 6054ee043d012c0319489cc5c7b20bc3ad3cb0a1
+
                 weather.direction = degreesToDirection(data.wind.deg);
             
             update(weather);
@@ -57,7 +55,7 @@ function updateByCityName(name) {
     sendRequest(url);
 }
 
-<<<<<<< HEAD
+
 function min(sec){
 
     var data = new Date(sec * 1000);
@@ -67,8 +65,7 @@ return time;
     
 }
 
-=======
->>>>>>> 6054ee043d012c0319489cc5c7b20bc3ad3cb0a1
+
 function degreesToDirection(degres){
     var range = 360/8;
     var low = 360 - range;
@@ -140,7 +137,7 @@ function citys(){
     updateByCityName(city);
 }
 
-<<<<<<< HEAD
+
 //module.exports = sendRequest;
 
 
@@ -186,43 +183,3 @@ function citys(){
 //    
 //}
   
-
-
-=======
->>>>>>> 6054ee043d012c0319489cc5c7b20bc3ad3cb0a1
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

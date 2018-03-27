@@ -21,3 +21,23 @@
 //
 //module.exports = url_Timezone;
 //module.exports = url_Forcast;
+
+var config = {
+    
+    weather: {
+        url: "http://api.openweathermap.org/data/2.5/weather?",
+        client_id: "61f94a9fa8130d49c23ed0f74d7e97af"
+    },
+    
+    forcast: {
+        url: "http://api.openweathermap.org/data/2.5/forecast?",
+        client_id: "61f94a9fa8130d49c23ed0f74d7e97af"
+    },
+    
+    timeZone: {
+        url: "https://maps.googleapis.com/maps/api/timezone/json?location=",
+        client_id: "AIzaSyDxD31Mqfq7aQ6_bnK-ZpcbxsU075tDwog"
+    }
+}
+
+module.experts = config;

@@ -1,4 +1,4 @@
-var url = require('url');
+//var urll = require('../url');
 var moment = require('moment');
 var AP_PID = "61f94a9fa8130d49c23ed0f74d7e97af"; 
 
@@ -57,7 +57,7 @@ function sendRequestForcast(url) {
 }
 
 function updateByCityNameForcast(name) {
-     var url = "http://api.openweathermap.org/data/2.5/forecast?"+
+     var url = "http://api.openweathermap.org/data/2.5/forecast?"  +
         "q="+name+
         "&APPID="+AP_PID;
     sendRequestForcast(url);
