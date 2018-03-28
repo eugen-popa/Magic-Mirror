@@ -1,7 +1,5 @@
-var min = require("./modules/sunSetRise");
+var url_key = require("./config/config");
 var moment = require('moment');
-var APPID = "61f94a9fa8130d49c23ed0f74d7e97af";
-var API_TIME = "AIzaSyDxD31Mqfq7aQ6_bnK-ZpcbxsU075tDwog";
 
 var celsius, fahrenheit, loc, icon, humidity, windK, windM, direction, city, sunset, sunrise;
 
@@ -26,7 +24,6 @@ function sendRequest(url){
              min(data.sys.sunrise, loc, 'sunrise');
              min(data.sys.sunset, loc, 'sunset');
             
-
             var weather = {};    
                 weather.icon = data.weather[0].icon;
                 weather.humidity = data.main.humidity;
@@ -49,22 +46,17 @@ function sendRequest(url){
 }
 
 function updateByCityName(name) {
-     var url = "http://api.openweathermap.org/data/2.5/weather?"+
-        "q="+name+
-        "&APPID="+APPID;
+     var url = url_key.weather.url + "q=" + name + "&APPID=" + url_key.weather.key;
     sendRequest(url);
 }
-
 
 function min(sec){
 
     var data = new Date(sec * 1000);
     console.log(data)
     var time = data.toLocaleTimeString('it-IT', {hour: '2-digit', minute:'2-digit'});
-return time;
-    
+return time;    
 }
-
 
 function degreesToDirection(degres){
     var range = 360/8;
@@ -101,7 +93,6 @@ function KM(km){
 
 function update(weather){
     
-    
     celsius.innerHTML = weather.celsius;
     fahrenheit.innerHTML = weather.fahrenheit;
     loc.innerHTML = weather.loc;
@@ -115,9 +106,7 @@ function update(weather){
     direction.innerHTML = weather.direction;
     sunset.innerHTML = weather.sunset;
     sunrise.innerHTML = weather.sunrise;
-    
-    
-    
+     
 }
 
 function citys(){
@@ -135,15 +124,20 @@ function citys(){
     city = document.getElementById('city').value || 'fremont';
     
     updateByCityName(city);
+    
+    document.getElementById('city').focus();
+
 }
 
+// document.addEventListener('keypress', function(event){
+//        if(event.keyCode === 13 || event.which === 13){
+//            console.log('key')
+//        city = document.getElementById('city').value || 'fremont';
+//            updateByCityName(city);
+//        }
+// })
 
 //module.exports = sendRequest;
-
-
-
-
-
 
 //function min(sec, loc){
 //    
@@ -182,4 +176,43 @@ function citys(){
 //    xhr.send()
 //    
 //}
+
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

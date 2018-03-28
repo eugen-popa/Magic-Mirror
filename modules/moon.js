@@ -34,4 +34,3 @@ document.addEventListener("DOMContentLoaded", function() {
 	configMoon.LDZ=new Date(configMoon.year,configMoon.month-1,1)/1000
 	moon(configMoon);
 })
-

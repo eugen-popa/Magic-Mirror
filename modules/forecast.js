@@ -1,6 +1,5 @@
-//var urll = require('../url');
-var moment = require('moment');
-var AP_PID = "61f94a9fa8130d49c23ed0f74d7e97af"; 
+var url_key = require('./config/config')
+var moment = require('moment'); 
 
 var forcastIcon1,forcastIcon2,forcastIcon3,forcastIcon4,forcastIcon5, 
     celsius1,celsius2,celsius3,celsius4,celsius5,
@@ -57,9 +56,7 @@ function sendRequestForcast(url) {
 }
 
 function updateByCityNameForcast(name) {
-     var url = "http://api.openweathermap.org/data/2.5/forecast?"  +
-        "q="+name+
-        "&APPID="+AP_PID;
+     var url = url_key.forcast.url + "q="+ name + "&APPID="+url_key.forcast.key;
     sendRequestForcast(url);
 }
 
@@ -112,6 +109,11 @@ function forcast(){
 
     updateByCityNameForcast(city);
 }
-
-
+// document.addEventListener('keypress', function(event){
+//        if(event.keyCode === 13 || event.which === 13){
+//            console.log('key')
+//            city = document.getElementById('city').value || 'fremont';
+//            updateByCityNameForcast(city);
+//        }
+// }
 

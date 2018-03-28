@@ -1,14 +1,11 @@
 
-//var url = require("./modules/url");
-var API_FORCAST = "61f94a9fa8130d49c23ed0f74d7e97af"; 
+var url_key = require("./config/config");
 var API_TIME = "AIzaSyDxD31Mqfq7aQ6_bnK-ZpcbxsU075tDwog";
 
 var clear  = null;
 
 function second(city) {
-var urll = "http://api.openweathermap.org/data/2.5/forecast?"+
-        "q="+ city +
-        "&APPID="+API_FORCAST;
+var urll = url_key.forcast.url+"q="+city+"&APPID="+url_key.forcast.key;
 
 var xmlhttpp = new XMLHttpRequest();
     xmlhttpp.open('GET', urll)
@@ -23,7 +20,6 @@ var xmlhttpp = new XMLHttpRequest();
             third(loc);
         }
 }
-//xmlhttpp.open('GET', url, 'true')
 xmlhttpp.send()
 }
  
@@ -34,11 +30,8 @@ function third(loc){
 var daysofweek = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'];
  
     var targetDate = new Date();
-    var timestamp = targetDate.getTime()/1000 + targetDate.getTimezoneOffset() * 60; 
-    var apicall = 'https://maps.googleapis.com/maps/api/timezone/json?location=' 
-            + loc+ '&timestamp=' 
-            + timestamp + '&key=' 
-            + API_TIME;
+    var timestamp = targetDate.getTime()/1000 +                               targetDate.getTimezoneOffset() * 60; 
+    var apicall = url_key.timeZone.url + loc+ '&timestamp=' + timestamp + '&key=' + url_key.timeZone.key;
 
     var xhr = new XMLHttpRequest() 
     xhr.open('GET', apicall) 
@@ -52,6 +45,7 @@ var daysofweek = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'];
                 var localdate = new Date(timestamp * 1000 + offsets) 
 
                 console.log(localdate)
+
 
                 var refreshDate = new Date()
                 var millisecondselapsed = refreshDate - targetDate 
@@ -67,11 +61,13 @@ var daysofweek = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'];
                 clear = setInterval(function(){
                     localdate.setSeconds(localdate.getSeconds()+1)
 
+
                 localdate.setMilliseconds(localdate.getMilliseconds()+ millisecondselapsed) 
                
 //                if (clear){clearInterval(clear)}
 //                clear = setInterval(function(){
 //                    localdate.setSeconds(localdate.getSeconds()+1)     
+
 
                 document.getElementById('the-time').innerHTML = 
                      localdate.toLocaleTimeString() +" "+ daysofweek[localdate.getDay() ]
