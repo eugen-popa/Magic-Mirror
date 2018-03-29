@@ -21,8 +21,8 @@ function sendRequest(url){
 //            var time2 = min(data.sys.sunset, loc);
 //            console.log('hello '+time1)
 
-             min(data.sys.sunrise, loc, 'sunrise');
-             min(data.sys.sunset, loc, 'sunset');
+//             min(data.sys.sunrise, loc, 'sunrise');
+//             min(data.sys.sunset, loc, 'sunset');
             
             var weather = {};    
                 weather.icon = data.weather[0].icon;

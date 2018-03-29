@@ -17,6 +17,11 @@ var config = {
     
     moon: {
         url: "http://www.icalendar37.net/lunar/api/?"
+    },
+    
+    news: {
+        url: "https://newsapi.org/v2/everything?domains=wsj.com,nytimes.com&apiKey=",
+        key: "d67171db742340cdaa9178186cb4875d"
     }
 }
 
