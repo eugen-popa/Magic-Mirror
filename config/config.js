@@ -23,6 +23,8 @@ var config = {
         url: "https://newsapi.org/v2/everything?domains=wsj.com,nytimes.com&apiKey=",
         key: "d67171db742340cdaa9178186cb4875d"
     }
+    
+    
 }
 
 module.exports = config;

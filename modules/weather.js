@@ -1,7 +1,8 @@
 var url_key = require("./config/config");
+var min = require("./modules/sunSetRise");
 var moment = require('moment');
 
-var celsius, fahrenheit, loc, icon, humidity, windK, windM, direction, city, sunset, sunrise;
+var celsius, fahrenheit, loc, icon, humidity, windK, windM, direction, city;
 
 function sendRequest(url){
     var xmlhttp = new XMLHttpRequest();
@@ -15,14 +16,8 @@ function sendRequest(url){
                   locCityName.lon = data.coord.lon;
             const loc = locCityName.lat + ", " + locCityName.lon;
 
-//            var time1 = min(data.sys.sunrise, loc);
-//            console.log('asha');
-//            console.log(min(data.sys.sunrise,loc));
-//            var time2 = min(data.sys.sunset, loc);
-//            console.log('hello '+time1)
-
-//             min(data.sys.sunrise, loc, 'sunrise');
-//             min(data.sys.sunset, loc, 'sunset');
+             min(data.sys.sunrise, loc, 'sunrise');
+             min(data.sys.sunset, loc, 'sunset');
             
             var weather = {};    
                 weather.icon = data.weather[0].icon;
@@ -32,9 +27,6 @@ function sendRequest(url){
                 weather.loc = data.name;
                 weather.celsius = KtoC(data.main.temp);
                 weather.fahrenheit = KtoF(data.main.temp);
-
-                weather.sunrise = min(data.sys.sunrise, loc);
-                weather.sunset = min(data.sys.sunset, loc);
 
                 weather.direction = degreesToDirection(data.wind.deg);
             
@@ -48,14 +40,6 @@ function sendRequest(url){
 function updateByCityName(name) {
      var url = url_key.weather.url + "q=" + name + "&APPID=" + url_key.weather.key;
     sendRequest(url);
-}
-
-function min(sec){
-
-    var data = new Date(sec * 1000);
-    console.log(data)
-    var time = data.toLocaleTimeString('it-IT', {hour: '2-digit', minute:'2-digit'});
-return time;    
 }
 
 function degreesToDirection(degres){
@@ -104,8 +88,6 @@ function update(weather){
     windK.innerHTML = weather.windK;
     windM.innerHTML = weather.windM;
     direction.innerHTML = weather.direction;
-    sunset.innerHTML = weather.sunset;
-    sunrise.innerHTML = weather.sunrise;
      
 }
 
@@ -118,8 +100,6 @@ function citys(){
     windK = document.getElementById('windK');
     windM = document.getElementById('windM')
     direction = document.getElementById('direction');
-    sunrise = document.getElementById('sunrise');
-    sunset = document.getElementById('sunset');
     
     city = document.getElementById('city').value || 'fremont';
     
@@ -129,53 +109,6 @@ function citys(){
 
 }
 
-// document.addEventListener('keypress', function(event){
-//        if(event.keyCode === 13 || event.which === 13){
-//            console.log('key')
-//        city = document.getElementById('city').value || 'fremont';
-//            updateByCityName(city);
-//        }
-// })
-
-//module.exports = sendRequest;
-
-//function min(sec, loc){
-//    
-//    console.log(loc)
-//    
-//    var targetDate = new Date(sec * 1000) 
-//    console.log(targetDate)
-//    
-//    var timestamp = targetDate.getTime()/1000 + targetDate.getTimezoneOffset() * 60
-//    console.log(timestamp)
-// 
-//    var apicall = 'https://maps.googleapis.com/maps/api/timezone/json?location=' 
-//            + loc+ '&timestamp=' 
-//            + timestamp + '&key=' 
-//            + API_TIME;
-//    
-//    var xhr = new XMLHttpRequest() 
-//    xhr.open('GET', apicall) 
-//    xhr.onload = function(){
-//        if (xhr.status === 200){ 
-//            var output = JSON.parse(xhr.responseText) 
-// 
-//            if (output.status == 'OK'){ 
-//                
-//                var offsets = output.dstOffset * 1000 + output.rawOffset * 1000 
-//                
-//                var time1 = new Date(timestamp * 1000 + offsets) 
-//                    console.log('llllllllll'+time1)
-//                return ('time1');
-//            }
-//        }
-//        else{
-//            alert('Request failed. :(( Returned status of ' + xhr.status)
-//        }
-//    }
-//    xhr.send()
-//    
-//}
 
   
 

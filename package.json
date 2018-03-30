@@ -21,6 +21,8 @@
   },
   "dependencies": {
     "electron-reload": "^1.2.2",
+    "es6-import": "^1.6.4",
+    "import": "0.0.6",
     "jquery": "^3.3.1",
     "npm": "^5.8.0"
   }
