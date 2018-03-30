@@ -1,10 +1,11 @@
-var url_key = require("./config/config");
+var url_key = require('./config/config');
 var min = require("./modules/sunSetRise");
 var moment = require('moment');
 
 var celsius, fahrenheit, loc, icon, humidity, windK, windM, direction, city;
 
-function sendRequest(url){
+function sendRequest(name){
+    var url = url_key.weather.url + "q=" + name + "&APPID=" + url_key.weather.key;
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
@@ -35,11 +36,6 @@ function sendRequest(url){
     };
     xmlhttp.open('GET', url, true);
     xmlhttp.send();
-}
-
-function updateByCityName(name) {
-     var url = url_key.weather.url + "q=" + name + "&APPID=" + url_key.weather.key;
-    sendRequest(url);
 }
 
 function degreesToDirection(degres){
@@ -81,14 +77,13 @@ function update(weather){
     fahrenheit.innerHTML = weather.fahrenheit;
     loc.innerHTML = weather.loc;
     icon.src = "img/icons/" + weather.icon + '.png';
-    if(weather.icon == '50n' || weather.icon == '10n'){
+if(weather.icon == '50n' || weather.icon == '10n'){
         icon.src = 'img/icons/202.gif'
     }
     humidity.innerHTML = weather.humidity;
     windK.innerHTML = weather.windK;
     windM.innerHTML = weather.windM;
     direction.innerHTML = weather.direction;
-     
 }
 
 function citys(){
@@ -103,10 +98,9 @@ function citys(){
     
     city = document.getElementById('city').value || 'fremont';
     
-    updateByCityName(city);
+    sendRequest(city);
     
     document.getElementById('city').focus();
-
 }
 
 

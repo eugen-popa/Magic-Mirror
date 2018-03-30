@@ -22,9 +22,12 @@ var config = {
     news: {
         url: "https://newsapi.org/v2/everything?domains=wsj.com,nytimes.com&apiKey=",
         key: "d67171db742340cdaa9178186cb4875d"
+    },
+    
+    guardian: {
+        url: "https://content.guardianapis.com/search?api-key=",
+        key: "0047d977-1377-4057-ae99-be354253b667"
     }
-    
-    
 }
 
 module.exports = config;

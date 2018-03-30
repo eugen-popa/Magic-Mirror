@@ -1,11 +1,13 @@
-var url_key = require('./config/config')
 var moment = require('moment'); 
+var third = require("./modules/time");
+var url_key = require("./config/config");
 
 var forcastIcon1,forcastIcon2,forcastIcon3,forcastIcon4,forcastIcon5, 
     celsius1,celsius2,celsius3,celsius4,celsius5,
     day1,day2,day3,day4,day5;
 
-function sendRequestForcast(url) {
+function sendRequestForcast(city) {
+    var url = url_key.forcast.url + "q="+ city + "&APPID="+url_key.forcast.key;
     var xmlhttp = new XMLHttpRequest();
     
     xmlhttp.onreadystatechange = function() {
@@ -13,6 +15,12 @@ function sendRequestForcast(url) {
             
             var data = JSON.parse(xmlhttp.responseText);
            console.log(data);
+            
+            const cord = {};
+                    cord.lat = data.city.coord.lat
+                    cord.lon = data.city.coord.lon;
+                const loc = cord.lat + ", " + cord.lon;
+            third(loc);
             
             var aray_icon = [];
             var aray_temp = [];
@@ -53,11 +61,6 @@ function sendRequestForcast(url) {
     };
     xmlhttp.open('GET', url, true);
     xmlhttp.send();
-}
-
-function updateByCityNameForcast(name) {
-     var url = url_key.forcast.url + "q="+ name + "&APPID="+url_key.forcast.key;
-    sendRequestForcast(url);
 }
 
 function KtoCForcast(k) {
@@ -107,7 +110,7 @@ function forcast(){
     
     city = document.getElementById('city').value || 'fremont';
 
-    updateByCityNameForcast(city);
+    sendRequestForcast(city);
 }
 // document.addEventListener('keypress', function(event){
 //        if(event.keyCode === 13 || event.which === 13){

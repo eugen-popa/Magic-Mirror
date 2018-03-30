@@ -19,7 +19,7 @@ function news(){
 
 function guardian(){
 
-    var web_address = "https://content.guardianapis.com/search?api-key=0047d977-1377-4057-ae99-be354253b667";
+    var web_address = url_key.guardian.url+url_key.guardian.key;
     var xhr = new XMLHttpRequest() 
     xhr.open('GET', web_address) 
     xhr.onload = function(){

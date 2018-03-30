@@ -22,9 +22,6 @@ function min(sec, loc, myelement){
                 elem.innerHTML = time2;
             }
         }
-        else{
-            alert('Request failed. :(( Returned status of ' + xhr.status)
-        }
     }
     xhr.send()
 }
