@@ -1,5 +1,5 @@
 var url_key = require('./config/config');
-var min = require("./modules/sunSetRise");
+var sun = require("./modules/sunSetRise");
 var moment = require('moment');
 
 var celsius, fahrenheit, loc, icon, humidity, windK, windM, direction, city;
@@ -17,8 +17,8 @@ function sendRequest(name){
                   locCityName.lon = data.coord.lon;
             const loc = locCityName.lat + ", " + locCityName.lon;
 
-             min(data.sys.sunrise, loc, 'sunrise');
-             min(data.sys.sunset, loc, 'sunset');
+             sun(data.sys.sunrise, loc, 'sunrise');
+             sun(data.sys.sunset, loc, 'sunset');
             
             var weather = {};    
                 weather.icon = data.weather[0].icon;

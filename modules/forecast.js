@@ -1,5 +1,5 @@
 var moment = require('moment'); 
-var third = require("./modules/time");
+var time = require("./modules/time");
 var url_key = require("./config/config");
 
 var forcastIcon1,forcastIcon2,forcastIcon3,forcastIcon4,forcastIcon5, 
@@ -20,7 +20,7 @@ function sendRequestForcast(city) {
                     cord.lat = data.city.coord.lat
                     cord.lon = data.city.coord.lon;
                 const loc = cord.lat + ", " + cord.lon;
-            third(loc);
+            time(loc);
             
             var aray_icon = [];
             var aray_temp = [];

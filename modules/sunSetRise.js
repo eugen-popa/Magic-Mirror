@@ -1,15 +1,13 @@
 var url_key = require('../config/config');
 
-function min(sec, loc, myelement){
+function sun(sec, loc, myelement){
     var targetDate = new Date(sec * 1000) 
     var timestamp = targetDate.getTime()/1000 + targetDate.getTimezoneOffset() * 60
-    var apicall = url_key.timeZone.url 
-            + loc+ '&timestamp=' 
-            + timestamp + '&key=' 
-            + url_key.timeZone.key;
+    var url = url_key.timeZone.url + loc+ '&timestamp=' + timestamp + '&key=' 
+     + url_key.timeZone.key;
     
     var xhr = new XMLHttpRequest() 
-    xhr.open('GET', apicall) 
+    xhr.open('GET', url) 
     xhr.onload = function(){
         if (xhr.status === 200){ 
             var output = JSON.parse(xhr.responseText) 
@@ -26,5 +24,4 @@ function min(sec, loc, myelement){
     xhr.send()
 }
 
-module.exports = min;
-
+module.exports = sun;

@@ -1,6 +1,6 @@
 var clear  = null;
 
-function third(loc){
+function time(loc){
  
 var daysofweek = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'];
  
@@ -51,6 +51,6 @@ var daysofweek = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'];
     xhr.send(); 
 }
 
-module.exports = third;
+module.exports = time;
 
 
